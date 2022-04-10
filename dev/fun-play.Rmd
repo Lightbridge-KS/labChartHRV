@@ -1,0 +1,149 @@
+---
+title: "Play with Functions"
+author: "kittipos sirivongrungson"
+date: '2022-04-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## List Approach (USE)
+
+```{r}
+sloop::ftype(list)
+sloop::otype(list())
+```
+
+
+```{r}
+funs <- list(
+  half = function(x) x / 2,
+  double = function(x) x * 2
+)
+
+funs$half(2)
+```
+
+```{r}
+new_list <- function(l = list()){
+  stopifnot(is.list(l))
+  l
+}
+
+new_list(list(a = 1))
+# new_list("x")
+```
+
+Both works
+
+```{r extract_what}
+# With constructor
+extract_what <- new_list(list(
+  digits = function(x) stringr::str_extract(x, "[:digit:]+"),
+  chars = function(x) stringr::str_extract(x, "[:alpha:]+")
+  
+))
+# No constructor
+extract_what <- list(
+  digits = function(x) stringr::str_extract(x, "[:digit:]+"),
+  chars = function(x) stringr::str_extract(x, "[:alpha:]+")
+  
+)
+
+extract_what$digits(c("1a", "2c"))
+extract_what$chars("1a")
+
+extract_what$digits()
+```
+
+### Function Factory
+
+```{r}
+test_regex <- list(digits = "[:digit:]+",
+                   chars = "[:alpha:]+")
+```
+
+Function to extract regex
+
+```{r}
+extract_thisss <- function(nm){
+  function(x){
+    stringr::str_extract(x, test_regex[[nm]])
+  }
+}
+```
+
+```{r}
+## Maunal
+extract_this <- list(
+  "digits" = extract_thisss("digits"),
+  "chars" =  extract_thisss("chars")
+)
+
+extract_this$digits("a1")
+extract_this$chars("a1")
+```
+
+
+```{r}
+### Auto
+new_extract_this <- function() {
+  names(test_regex) %>%
+    setNames(names(test_regex)) %>%
+    purrr::map(extract_thisss)
+}
+
+extract_this <- new_extract_this()
+
+extract_this$digits("a1")
+extract_this$chars("a1")
+```
+
+Don't work, dont' know why
+
+```{r}
+new_extract_this <- function() {
+  
+  nms <- names(test_regex)
+  out <- vector("list", length(test_regex))
+  
+  for (i in  seq_along(nms)) {
+    
+    nm <- nms[[i]]
+    out[[i]] <- extract_thisss(nm)
+  }
+  
+  names(out) <- nms
+  out
+}
+
+extract_this <- new_extract_this()
+
+extract_this$digits("a1")
+extract_this$chars("a1")
+```
+
+
+### Knitr Approach
+
+
+```{r}
+knitr::opts_chunk$get()
+```
+
+
+```{r}
+sloop::otype(knitr::opts_chunk)
+class(knitr::opts_chunk)
+```
+
+
+```{r}
+sloop::otype(knitr::opts_chunk$set)
+sloop::ftype(knitr::opts_chunk$set)
+class(knitr::opts_chunk$set)
+```
+

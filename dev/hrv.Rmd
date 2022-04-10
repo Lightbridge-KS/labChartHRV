@@ -1,0 +1,228 @@
+---
+title: "HRV"
+author: "kittipos sirivongrungson"
+date: '2022-04-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) # Set WD to Root
+here::i_am("dev/hrv.Rmd")
+library(here)
+
+```
+
+### Plan
+
+`read_HRV_reports`: a wrapper
+
+-   Input: `path-to-hrv-folder`
+-   Return: a data frame of HRV reports combined
+
+`parse_HRV_reports`
+
+-   Input: character vector of HRV reports
+-   Return: a data frame of HRV reports combined
+
+`extract_HRV_field`
+
+-   Input: character vector of HRV reports
+-   Return: character vector of particular fields
+
+Example
+
+`extract_HRV_field$Name()`
+
+```{r}
+usethis::use_r("HRV_reports")
+```
+
+
+## Parse HRV reports
+
+```{r parse_HRV_reports}
+parse_HRV_reports <- function(x, format_cols = TRUE) {
+  
+  # Regex: Extract after equal sign
+  after_equal_regex <- c("(?<== )([:digit:]|[:punct:])+")
+  
+  nm_self <-  stats::setNames(names(regex_hrv()), names(regex_hrv())) 
+  
+  report_df <- nm_self %>%
+    # Step 1: Extract HRV fields into DF
+    purrr::map_dfc(
+      ~ extract_HRV_field[[.x]](x)
+    ) %>%
+    # Step 2: Some vars have to extract number after equal sign
+    dplyr::mutate(
+      dplyr::across(
+        c("VLF", "LF", "HF", "LF_HF"),
+        ~ stringr::str_extract(.x, after_equal_regex)
+      )
+    )
+  
+  ## Not format column
+  if( !format_cols){ return(report_df) }
+ 
+  ## Format column 
+  report_df %>%   
+    dplyr::mutate(dplyr::across(c(Channel, Gender), factor),
+         dplyr::across(Age, as.integer),
+         dplyr::across(c(Beats_tot,Rec_length,
+                         Discontinuities:Power_tot,
+                  VLF,LF, LF_nu, HF, HF_nu, LF_HF), as.numeric)
+         ) %>% 
+    # Add pNN50
+    dplyr::mutate(NN50_percent = 100 * (NN50_count/Normals_count),
+                  .after = NN50_count) 
+ 
+}
+
+parse_HRV_reports(hrv_sim_raw$text)
+```
+
+
+```{r}
+hrv_sim_raw$text %>% 
+  extract_HRV_field[["File_LabChart"]]()
+```
+
+2 steps extract
+
+`VLF`, `LF`, `HF`, `LF_HF`
+
+
+```{r}
+after_equal <-  c("(?<== )([:digit:]|[:punct:])+")
+
+names(extract_HRV_field) %>% 
+  setNames(names(extract_HRV_field)) %>% 
+  purrr::map_dfc(
+    ~extract_HRV_field[[.x]](hrv_sim_raw$text)
+  ) %>% 
+  mutate(across(c("VLF", "LF", "HF", "LF_HF"), 
+                ~stringr::str_extract(.x, after_equal))
+         )
+```
+
+
+## Extract Field
+
+```{r}
+usethis::use_r("HRV_field")
+usethis::use_test("HRV_field")
+```
+
+### Constructor
+
+```{r new_extract_HRV_field}
+new_extract_HRV_field <- function() {
+  
+  extract_factory <- function(nm) {
+    function(x) {
+      trimws(stringr::str_extract(x, regex_hrv()[[nm]]))
+    }
+  }
+  
+  nm_self <-  stats::setNames(names(regex_hrv()), names(regex_hrv())) 
+  f <- purrr::map(nm_self, extract_factory)
+  f
+}
+```
+
+```{r}
+trimws(c(" a ", " b "))
+```
+
+
+### Extract Fields
+
+```{r extract_HRV_field}
+extract_HRV_field <- new_extract_HRV_field()
+names(extract_HRV_field)
+
+extract_HRV_field$Date(c("Date: 122", "Date: 123"))
+
+extract_HRV_field$Channel(hrv1_chr_raw)
+
+#extract_HRV_field$after_equal("a = 12.3")
+
+extract_HRV_field$VLF("VLF (DC-0.04Hz) = 114.5 ms²")
+extract_HRV_field$VLF_freq("VLF (DC-0.04Hz) = 114.5 ms²")
+```
+
+
+### Lookup Regexes
+
+```{r}
+## Extract after equal sign
+after_equal = c("(?<== )([:digit:]|[:punct:])+")
+```
+
+
+```{r regex_hrv}
+regex_hrv <- function() {
+
+  list(
+    # Line 1
+    File_LabChart = c("(?<=File: \").+(?=\")"),
+    Channel = c("(?<=Channel: ).+(?=Date)"),
+    Date = c("(?<=Date: ).+"),
+    # Line 2
+    Start_time = c("(?<=Start time: ).+(?=End time)"),
+    End_time = c("(?<=End time: ).+"),
+    # Line 3
+    Name = c("(?<=Name: )[:graph:]+"),
+    Gender = c("(?<=Gender: )[:alpha:]+"),
+    Age = c("(?<=Age: )([:digit:]|[:punct:])+"),
+    # Line 4
+    Beats_tot = c("(?<=Total number of beats = )([:digit:]|[:punct:])+"),
+    Rec_length = c("(?<=Length of recording = )([:digit:]|[:punct:])+"),
+    # Line 5
+    Class_bound = c("(?<=Classification boundaries: ).+"),
+    # Line 6
+    Discontinuities = c("(?<=Discontinuities = )([:digit:]|[:punct:])+"),
+    Beats_inserted = c("(?<=Manually inserted beats = )([:digit:]|[:punct:])+"),
+    Beats_deleted = c("(?<=Manually deleted beats = )([:digit:]|[:punct:])+"),
+    # Line 7
+    NN_max = c("(?<=Maximum NN = )([:digit:]|[:punct:])+"),
+    NN_min = c("(?<=Minimum NN = )([:digit:]|[:punct:])+"),
+    NN_range = c("(?<=Range = )([:digit:]|[:punct:])+"),
+    # Line 8
+    NN_mean = c("(?<=Mean NN = )([:digit:]|[:punct:])+"),
+    NN_median = c("(?<=Median NN = )([:digit:]|[:punct:])+"),
+    HR_avg = c("(?<=Average heart rate = )([:digit:]|[:punct:])+"),
+    # Line 9
+    SDNN = c("(?<=SDNN = )([:digit:]|[:punct:])+"),
+    SD_del_NN = c("(?<=SD of delta NN = )([:digit:]|[:punct:])+"),
+    RMSSD = c("(?<=RMSSD = )([:digit:]|[:punct:])+"),
+    # Line 10
+    Normals_count = c("(?<=Normals = )([:digit:]|[:punct:])+"),
+    Ectopics_count = c("(?<=Ectopics = )([:digit:]|[:punct:])+"),
+    Artifacts_count = c("(?<=Artifacts = )([:digit:]|[:punct:])+"),
+    NN50_count = c("(?<=NN50 = )([:digit:]|[:punct:])+"),
+    # Line 11
+    Spec_intv = c("(?<=Spectrum intervals = )([:digit:]|[:punct:])+"),
+    Spec_mean_NN = c("(?<=Mean spectrum NN = )([:digit:]|[:punct:])+"),
+
+    # Line 12
+    Power_tot = c("(?<=Total power = )([:digit:]|[:punct:])+"),
+    VLF_freq = c("(?<=VLF \\().+(?=\\))"),
+    VLF = c("VLF \\(.+\\) = ([:digit:]|[:punct:])+"),
+    # Last Line
+    LF_freq = c("(?<=((?<!V)(LF) \\())[^\\)]+"),
+    LF = c("(?<!V)(LF) \\(.+\\) = ([:digit:]|[:punct:])+"),
+    LF_nu = c("(\\.|[:digit:])+(?=( nu\\)[:blank:]+HF))"),
+
+    HF_freq = c("(?<=((HF) \\())[^\\)]+"),
+    HF = c("(HF) \\(.+\\) = ([:digit:]|[:punct:])+"),
+    HF_nu = c("(\\.|[:digit:])+(?=( nu\\)[:blank:]+LF/HF))"),
+
+    LF_HF = c("(LF/HF) = ([:digit:]|[:punct:])+")
+
+  )
+
+}
+
+```
+

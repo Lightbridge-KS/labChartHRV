@@ -1,0 +1,76 @@
+---
+title: "R6"
+author: "kittipos sirivongrungson"
+date: '2022-04-10'
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) # Set WD to Root
+here::i_am("dev/r6-play.Rmd")
+library(here)
+library(R6)
+```
+
+May be too complicated
+
+```{r Extract}
+Extract <- R6Class("Extract", list(
+  digits = function(x) stringr::str_extract(x, "[:digit:]+"),
+  chars = function(x) stringr::str_extract(x, "[:alpha:]+")
+))
+
+extractor <- Extract$new()
+extractor
+```
+
+
+```{r}
+Extract <- R6Class("Extract", cloneable = FALSE,
+  private = list(
+    str_extract = function(x, regex) stringr::str_extract(x, regex)
+  ),
+  public = list(
+    digits = function(x) private$str_extract(x, "[:digit:]+"),
+    chars = function(x) private$str_extract(x, "[:alpha:]+")
+  )
+)
+extractor <- Extract$new()
+```
+
+```{r}
+class(extractor)
+sloop::otype(extractor)
+```
+
+
+```{r}
+# Can't access private field
+# extractor$str_extract("a2", "[:alpha:]+")
+extractor$chars("a1")
+extractor$digits("b1")
+extractor$digits()
+
+extractor[["digits"]]("b1")
+```
+
+```{r}
+test_regex <- list(digits = "[:digit:]+",
+                   chars = "[:alpha:]+")
+```
+
+
+```{r}
+Extract <- R6Class("Extract", cloneable = FALSE,
+  private = list(
+    str_extract = function(x, regex) stringr::str_extract(x, regex)
+  ),
+  public = list(
+    digits = function(x) private$str_extract(x, "[:digit:]+"),
+    chars = function(x) private$str_extract(x, "[:alpha:]+")
+  )
+)
+extractor <- Extract$new()
+```
+

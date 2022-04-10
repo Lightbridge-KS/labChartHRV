@@ -1,0 +1,373 @@
+---
+title: "Build"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) # Set WD to Root
+here::i_am("dev/build.Rmd")
+library(here)
+
+```
+
+# PKG Version
+
+
+```{r}
+# increments the version field in DESCRIPTION
+# usethis::use_version("patch")
+```
+
+
+# 1. PKG File Structures
+
+
+```{r fs_pkg}
+fs::dir_create("dev") # Public R-Markdown to develop
+# fs::dir_create("my_data") # Contain my private data
+# fs::dir_create("my_R") # Contain my personal R script file 
+```
+
+# 2. Git & Build
+
+```{r use_git}
+usethis::use_git()
+```
+
+## Git Ignore
+
+```{r use_git_ignore}
+# usethis::use_git_ignore("folder_name")
+# usethis::use_git_ignore("my_dev/") # Private Dev
+usethis::use_git_ignore("*.nb.html") # HTML notebook files
+usethis::use_git_ignore("my_data/") # My private data
+# usethis::use_git_ignore("testdata/") # ignore private Test Data in `inst/testdata`
+```
+
+## Build Ignore
+
+R will not build theses files. If "file A" is build ignored but not git ignored, "file A" will available on github, but not in an installed binary package. Useful for tutorial
+
+```{r use_build_ignore}
+# usethis::use_build_ignore("folder_name")
+# Ignore Dev/
+usethis::use_build_ignore("dev") 
+usethis::use_build_ignore("my_data") 
+```
+
+## Github Links
+
+Run after add remote repo on Github
+
+```{r use_github_links}
+usethis::use_github_links()
+```
+
+
+
+## R CMD Check
+
+This will 
+
+1. create YAML file in `.github/workflows/`
+2.  Adding R-CMD-check badge to 'README.Rmd'
+
+When Push to Github **R-CMD-Check** will run on Ubuntu
+
+```{r use_github_actions}
+usethis::use_github_actions()
+```
+
+See more at: 
+-  [How to Github Action](https://orchid00.github.io/actions_sandbox/packageci.html)
+-  [Github Action WF](https://github.com/r-lib/actions/blob/v1/examples/README.md)
+
+## Test coverage workflow
+
+1. Call `usethis::use_coverage()`
+
+```{r use_coverage}
+usethis::use_coverage()
+```
+
+2. Set github action
+
+```{r test-coverage}
+use_github_action("test-coverage")
+```
+
+[Ref](https://github.com/r-lib/actions/tree/v1/examples#test-coverage-workflow)
+
+
+
+This will connect your package to codecov.
+
+Click on codecov badges, it will link to site, then copy token to clip board.
+
+```{r}
+covr::codecov(token = "your-token")
+```
+
+
+3. Package Coverage (Local)
+
+[covr](https://covr.r-lib.org)
+
+```{r}
+covr::package_coverage()
+```
+
+for interactive use in viewer pane
+
+```{r}
+covr::report()
+```
+
+
+
+# 3. DOCs
+
+
+## DESCRIPTION
+
+```{r}
+rstudioapi::navigateToFile("DESCRIPTION")
+```
+
+
+
+```{r DESCRIPTION}
+# usethis::use_description(
+# fields = list(
+#   Title = "What The Package Does (one line, title case required)",
+#   `Authors@R` = 'person("Kittipos", "Sirivongrungson", 
+#                         email = "ki11ip0.s.a.s@gmail.com", 
+#                         role = c("aut", "cre"))',
+#   Description = "What the package does (one paragraph)",
+#   License = "MIT + file LICENSE",
+#   Depends = "R (>= 2.10)"
+#   )
+# )
+```
+
+
+## LICENSE
+
+```{r LICENSE}
+usethis::use_mit_license()
+```
+
+## README
+
+```{r README}
+# usethis::use_readme_rmd()
+# usethis::use_lifecycle_badge("experimental")
+```
+
+## NEWS
+
+[NEWS](https://r-pkgs.org/release.html#news)
+
+```{r}
+# usethis::use_news_md()
+```
+
+## Vignette
+
+```{r vignette}
+# usethis::use_vignette("pkg", "Introduction to pkg")
+```
+
+## Template
+
+```{r rmd_template}
+# usethis::use_rmarkdown_template(
+#   template_name = "name",
+#   template_dir = "dir-name",
+#   template_description = "description",
+#   template_create_dir = FALSE
+#   )
+```
+
+
+# 4. Dependencies
+
+## Import
+
+```{r import}
+usethis::use_pipe()
+# usethis::use_tibble() # If package use `tbl_df` class
+usethis::use_package("purrr")
+usethis::use_package("dplyr")
+usethis::use_package("stringr")
+usethis::use_package("readtext")
+
+# Dev Package
+# usethis::use_dev_package("pkg", remote = "Lightbridge-KS/pkg")
+```
+
+
+## Import from
+
+```{r import_from}
+# usethis::use_import_from("rlang", ":=") # Must have if use rlang
+```
+
+## Global variables
+
+
+```{r globalVariables}
+# Put this in  R/globals.R
+# utils::globalVariables(c("var1"))
+usethis::use_r("globals.R")
+```
+
+
+# 5. Tests
+
+```{r testthat}
+usethis::use_testthat()
+```
+
+Helper Functions for test -> create `tests/testthat/helper.R` manually
+
+```{r}
+# fs::file_create(here("tests/testthat/helper.R"))
+```
+
+If you want to use data for testing, put data file(s) in `inst/testdata`.
+The path to this data can be obtained by `system.file("testdata",...,package="my_package")`.
+
+For example, If I put `cars.csv` in `inst/testdata`, to read into R use this command `read.csv(system.file("testdata","cars.csv", package="my_package"))`.
+
+[ref](https://stackoverflow.com/questions/32328802/where-should-i-put-data-for-automated-tests-with-testthat)
+
+
+**Path to testdata folder**: put this in `tests/testthat/helper.R`:
+
+```{r path_testdata}
+path_testdata <- function(..., package = "pkg_name") {
+
+  system.file("testdata", ... ,package = package)
+
+}
+```
+
+
+# 6. Data
+
+## Exported Data
+
+-   Run: `usethis::use_data(export_df)`
+
+To store exported data in `data/`. 
+Each file in this directory should be `.rda` file containing a single object.
+
+-   Run: `usethis::use_data_raw("export_df")`
+
+To store code that used for data preparation in `data-raw/` 
+
+
+```{r export_data}
+# usethis::use_data(export_df1,export_df2) 
+
+#usethis::use_data(export_df1,export_df2) 
+
+# usethis::use_data_raw("export_df1") # Code to Prepare data
+# usethis::use_data_raw("export_df2") # Code to Prepare data
+```
+
+**How to Document a Data set**
+
+Document the name of the data in `R/` as roxygen2:
+
+```{r data_doc_example}
+#' Prices of 50,000 round cut diamonds.
+#'
+#' A dataset containing the prices and other attributes of almost 54,000
+#' diamonds.
+#'
+#' @format A data frame with 53940 rows and 10 variables:
+#' \describe{
+#'   \item{price}{price, in US dollars}
+#'   \item{carat}{weight of the diamond, in carats}
+#'   ...
+#' }
+#' @source \url{http://www.diamondse.info/}
+"diamonds"
+```
+
+
+
+
+## Internal Data
+
+Save all of the objects for internal use in `R/sysdata.rda.`
+Usually, they don’t need to be documented.
+
+```{r internal_data}
+# usethis::use_data(df1, df2, df3, internal = TRUE)
+
+# Lookup Table for HRV -> use as function instead
+# usethis::use_data(regex_hrv, internal = TRUE)
+# usethis::use_data_raw("regex_hrv")
+```
+
+## Raw Data
+
+If you want to show examples of loading/parsing raw data, put the original files in `inst/extdata`.
+
+```{r}
+fs::dir_create("inst/extdata")
+```
+
+**Function: Path to Raw Data**
+
+So that User can easy access path to raw data
+
+```{r}
+usethis::use_r("example") 
+usethis::use_test("example")
+```
+
+```{r PKG_example}
+#' Get path to sipsANS example
+#'
+#' sipsANS comes bundled with a number of sample files in its `inst/extdata`
+#' directory. This function make them easy to access
+#'
+#' @param path Path to example file or folder. If `NULL`, the example files or folders will be listed.
+#' @export
+#' @examples
+#' library(sipsANS)
+#' sipsANS_example()
+#' sipsANS_example("HRV")
+sipsANS_example <- function(path = NULL) {
+  
+  if (is.null(path)) {
+    dir(system.file("extdata", package = "sipsANS"))
+    
+  } else {
+    system.file("extdata", path, package = "sipsANS", mustWork = TRUE)
+  }
+  
+}
+
+sipsANS_example()
+sipsANS_example("HRV")
+sipsANS_example("HRV/file1.txt")
+```
+
+
+**Write: Raw Data**
+
+```{r }
+# raw_data %>% readr::write_csv(here("inst/extdata/file.csv"))
+```
+
+
+
+
+
+

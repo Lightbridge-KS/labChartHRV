@@ -1,0 +1,56 @@
+---
+title: "HRV Workflow Raw"
+author: "kittipos sirivongrungson"
+date: '2022-04-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) # Set WD to Root
+here::i_am("dev/hrv-wf-raw.Rmd")
+library(here)
+library(tidyverse)
+```
+
+
+
+
+## Read HRV Report file
+
+Using `readtext::readtext()`, Must read with `UTF-16LE` encoding
+
+```{r hrv_sim_raw}
+hrv_sim_raw <- readtext::readtext(sipsANS_example("HRV"), encoding = "UTF-16LE")
+typeof(hrv_sim_raw)
+class(hrv_sim_raw)
+hrv_sim_raw
+```
+
+See text as character vector
+
+```{r}
+hrv_sim_raw$text[1]
+```
+
+
+This would fail
+
+```{r}
+readLines(here("my_data/HRV-sim/File1.txt"), encoding = "UTF-16LE")
+
+readr::read_lines(here("my_data/HRV-sim/File1.txt"))
+readr::read_file(here("my_data/HRV-sim/File1.txt"))
+```
+
+
+## Process
+
+- Turn to tibble
+- Extract fields
+
+```{r}
+hrv_sim_raw %>% 
+  tibble::tibble() %>% 
+  pull(text)
+```
+
