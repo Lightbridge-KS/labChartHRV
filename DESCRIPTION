@@ -1,9 +1,9 @@
 Package: labChartHRV
-Title: ANS Lab in SI Physiology
+Title: LabChart HRV Data Import and Manipulation
 Version: 0.0.0.9000
 Authors@R: 
     person("Kittipos", "Sirivongrungson", , "kittipos.sir@mahidol.edu", role = c("aut", "cre"))
-Description: Helper functions to import HRV report files from program LabChart and BRS report file from program BeatScope Easy.
+Description: Helper functions to import and manipulate HRV data from program LabChart.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
