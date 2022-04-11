@@ -3,5 +3,6 @@
 export("%>%")
 export(extract_HRV_field)
 export(parse_HRV_reports)
+export(read_HRV_reports)
 export(sipsANS_example)
 importFrom(magrittr,"%>%")

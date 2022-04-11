@@ -2,7 +2,7 @@
 % Please edit documentation in R/HRV_reports.R
 \name{parse_HRV_reports}
 \alias{parse_HRV_reports}
-\title{Parse HRV Report file}
+\title{Parse LabChart's HRV Report}
 \usage{
 parse_HRV_reports(x, format_cols = TRUE)
 }
@@ -10,14 +10,23 @@ parse_HRV_reports(x, format_cols = TRUE)
 \item{x}{(Character) Character vectors of HRV report, each elements
 corresponding to one report.}
 
-\item{format_cols}{If \code{TRUE} format appropriate output variables as factor, integer, or double. Compute \code{NN50_percent} (pNN50) from \code{NN50_count/Normals_count}}
+\item{format_cols}{(Logical) If \code{TRUE} formats appropriate output variables as factor, integer, or double, and compute \code{NN50_percent} (pNN50) from \code{NN50_count/Normals_count}}
 }
 \value{
-A tibble
+A tibble of HRV report (one row per subject)
 }
 \description{
-Parse HRV Report file from a character vector to a tibble.
+Parse and transform LabChart's HRV report from a character vector to a tidy \href{https://tibble.tidyverse.org}{tibble}
+}
+\details{
+\code{\link[=parse_HRV_reports]{parse_HRV_reports()}} extracts key and value pairs from each fields of LabChart's HRV report supplied as character vectors
+using regular expression for pattern matching. Extracted data then transform into a \href{https://tibble.tidyverse.org}{tibble}
+with "key" mapping to column names and "value" mapping to corresponding cells.
+If \code{x} is given as character vector of length > 1, there will be multiple rows of tibble with each rows corresponding to each input character vectors.
 }
 \examples{
 NULL
+}
+\seealso{
+\code{\link[=read_HRV_reports]{read_HRV_reports()}}: read LabChart's HRV report from file(s) path.
 }
