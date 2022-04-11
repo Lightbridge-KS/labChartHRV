@@ -17,15 +17,15 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![R-CMD-check](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml/badge.svg?branch=main)](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/Lightbridge-KS/labChartHRV/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Lightbridge-KS/labChartHRV?branch=main)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![R-CMD-check](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml) [![Codecov test coverage](https://codecov.io/gh/Lightbridge-KS/labChartHRV/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Lightbridge-KS/labChartHRV?branch=main)
+
 <!-- badges: end -->
 
 > **R package :package: for LabChart's Heart Rate Variability Data**
 
 # Overview
 
-**`{labChartHRV}`** is an open-source software package written in [R programming language](https://www.r-project.org).
+`{labChartHRV}` is an open-source software package written in [R programming language](https://www.r-project.org).
 
 It is an R package which contains functions for data import and manipulation of [LabChart's HRV module](https://www.adinstruments.com/products/hrv).
 
@@ -53,7 +53,6 @@ This is a LabChart's HRV report file (`.txt`) of 1 subject.
 
 ![](man/figures/hrv-rep-ex1.png)
 
-
 How to transform it into a 1-row **data frame** for further analysis?
 
 Moreover, If we have multiple of these text files, how can we transform it into a data frame which has each rows corresponding to each subjects?
@@ -62,11 +61,9 @@ Moreover, If we have multiple of these text files, how can we transform it into 
 
 # Usage
 
-
 ```{r}
 library(labChartHRV)
 ```
-
 
 This package comes with example data of LabChart's HRV report file(s) in `.txt`.
 
@@ -90,7 +87,6 @@ hrv_tbl
 
 -   **Rows** corresponding to *report files* (i.e., each subjects).
 
-
 ```{r}
 # Variable names
 names(hrv_tbl)
@@ -106,10 +102,10 @@ HRV_vars_desc
 
 -   [Get started using labChartHRV](https://lightbridge-ks.github.io/labChartHRV/articles/labChartHRV.html)
 
-
 # Collaboration
 
 If you want to collaborate to add more function to this package, feel free to contact me at [kittipos.sir\@mahidol.edu](mailto:kittipos.sir@mahidol.edu).
 
 ------------------------------------------------------------------------
+
 Last updated: `r Sys.Date()`

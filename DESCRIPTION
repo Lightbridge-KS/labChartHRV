@@ -1,5 +1,5 @@
 Package: labChartHRV
-Title: LabChart HRV Data Import and Manipulation
+Title: LabChart's HRV Data Import and Manipulation
 Version: 0.0.0.9000
 Authors@R: 
     person("Kittipos", "Sirivongrungson", , "kittipos.sir@mahidol.edu", role = c("aut", "cre"))

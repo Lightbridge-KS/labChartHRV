@@ -175,7 +175,7 @@ fs::dir_create(here("man/figures"))
 [NEWS](https://r-pkgs.org/release.html#news)
 
 ```{r}
-# usethis::use_news_md()
+usethis::use_news_md()
 ```
 
 ## Vignette
