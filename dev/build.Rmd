@@ -161,9 +161,13 @@ usethis::use_mit_license()
 ## README
 
 ```{r README}
-# usethis::use_readme_rmd()
-# usethis::use_lifecycle_badge("experimental")
+usethis::use_readme_rmd()
+usethis::use_lifecycle_badge("experimental")
+
+# Figure in README
+fs::dir_create(here("man/figures"))
 ```
+
 
 ## NEWS
 
@@ -233,7 +237,7 @@ usethis::use_testthat()
 Helper Functions for test -> create `tests/testthat/helper.R` manually
 
 ```{r}
-# fs::file_create(here("tests/testthat/helper.R"))
+fs::file_create(here("tests/testthat/helper-test.R"))
 ```
 
 If you want to use data for testing, put data file(s) in `inst/testdata`.

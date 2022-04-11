@@ -35,7 +35,57 @@ Example
 
 ```{r}
 usethis::use_r("HRV_reports")
+rstudioapi::navigateToFile("tests/testthat/test-HRV_reports.R")
+# usethis::use_test("HRV_reports")
 ```
+
+## Read HRV reports
+
+```{r read_HRV_reports}
+read_HRV_reports <- function(file,
+                             format_cols = TRUE,
+                             encoding = "UTF-16LE",
+                             ...
+                             ){
+  # Read Raw
+  df_raw <- readtext::readtext(file = file, 
+                               encoding = encoding,
+                               ...
+                               )
+  # Parse Character to HRV tibble
+  df_hrv <- parse_HRV_reports(df_raw[["text"]], 
+                              format_cols = format_cols)
+  # Bind `doc_id` to HRV tibble
+  df_out <- dplyr::bind_cols(doc_id = df_raw[["doc_id"]], df_hrv)
+  df_out
+}
+
+read_HRV_reports(sipsANS_example("HRV"))
+```
+
+#### Howto: Read HRV
+
+Testing bind columns
+
+```{r}
+t_df <- tibble(a = 1:2, b = 3:4)
+c <- c(5:6)
+
+dplyr::bind_cols(t_df, data.frame(c = c))
+
+cbind(t_df, c = c)
+```
+
+```{r}
+readtext::encoding(sipsANS_example("HRV"))
+```
+
+
+```{r}
+readtext::readtext(sipsANS_example("HRV"), encoding = "UTF-16LE")$text %>% 
+  parse_HRV_reports()
+```
+
 
 
 ## Parse HRV reports
@@ -81,7 +131,7 @@ parse_HRV_reports <- function(x, format_cols = TRUE) {
 parse_HRV_reports(hrv_sim_raw$text)
 ```
 
-
+#### Howto: Parse HRV
 ```{r}
 hrv_sim_raw$text %>% 
   extract_HRV_field[["File_LabChart"]]()

@@ -2,7 +2,7 @@ Package: sipsANS
 Title: ANS Lab in SI Physiology
 Version: 0.0.0.9000
 Authors@R: 
-    person("Kittipos", "Sirivongrungson", , "ki11ip0.s.a.s@gmail.com", role = c("aut", "cre"))
+    person("Kittipos", "Sirivongrungson", , "kittipos.sir@mahidol.edu", role = c("aut", "cre"))
 Description: Helper functions to import HRV report files from program LabChart and BRS report file from program BeatScope Easy.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -15,7 +15,7 @@ Imports:
     readtext,
     stringr
 Depends: 
-    R (>= 2.10)
+    R (>= 3.10)
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
