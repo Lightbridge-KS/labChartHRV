@@ -7,6 +7,5 @@
 #' \describe{
 #'   \item{variable}{a variable names}
 #'   \item{description}{a description of each variables}
-#'   ...
 #' }
 "HRV_vars_desc"

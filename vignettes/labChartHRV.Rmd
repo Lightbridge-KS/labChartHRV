@@ -14,9 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(labChartHRV)
-```
 
 > Import **LabChart's HRV report file** (`.txt`) into a **tidy tibble** with 1 subject per rows.
 
@@ -45,6 +42,10 @@ That's why I've build this package!
 **`read_HRV_reports()`** read and transform LabChart's HRV report file (`.txt`) to a tidy tibble.
 
 The first argument (`file`) is a **path** to either *single* HRV report file or *folder* containing multiple HRV report file, the latter case should be more useful to you.
+
+```{r setup}
+library(labChartHRV)
+```
 
 ```{r path_hrv}
 # Path to a folder containing example HRV report text files
