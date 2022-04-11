@@ -4,3 +4,4 @@
 ^LICENSE\.md$
 ^my_data$
 ^data-raw$
+^README\.Rmd$
