@@ -29,11 +29,7 @@ knitr::opts_chunk$set(
 
 It is an R package which contains functions for data import and manipulation of [LabChart's HRV module](https://www.adinstruments.com/products/hrv).
 
-**Functionality**: currently there is 1
-
--   Import and transform LabChart's HRV report file (`.txt`) into a tibble (data frame).
-
-(If you want to collaborate and add more functions, please contact me at [kittipos.sir\@mahidol.edu](mailto:kittipos.sir@mahidol.edu))
+**Functionality**: Import and transform LabChart's HRV report file (`.txt`) into a tibble (data frame).
 
 # Installation
 
@@ -51,74 +47,65 @@ install.packages("remotes")
 remotes::install_github("Lightbridge-KS/labChartHRV")
 ```
 
+# Problems
+
+This is a LabChart's HRV report file (`.txt`) of 1 subject.
+
+![](man/figures/hrv-rep-ex1.png)
+
+
+How to transform it into a 1-row **data frame** for further analysis?
+
+Moreover, If we have multiple of these text files, how can we transform it into a data frame which has each rows corresponding to each subjects?
+
+`{labChartHRV}` package has functions to solve this problems
+
 # Usage
+
 
 ```{r}
 library(labChartHRV)
 ```
 
-`{labChartHRV}` contains simulated example data that can be accessed by `labChartHRV_example()`.
 
-```{r}
-# Show example data that available in this package
-labChartHRV_example()
-```
-
-Currently, there is 1 type of example data which is LabChart's HRV report file.
-
-## Module 1: Read LabChart's HRV Report
-
-> This module reads and transforms **LabChart's HRV report file** (`.txt`) into a **tidy tibble** with 1 subject per rows.
-
-### Introduction
-
-After exported LabChart's HRV of 1 subject into a report text file, it should look like this:
-
-![](man/figures/hrv-rep-ex1.png)
-
-As you can see, the text file is slightly formatted and store data in key-value pairs (mostly).
-
-> How to transform it so that a data analysis can be performed?
-
-To process this data for further analysis, one approach is to convert it to a table-like data structure which, in `R`, is a **data frame** (or [tibble](https://r4ds.had.co.nz/tibbles.html)). The design of this data frame should be [**tidy**](https://r4ds.had.co.nz/tidy-data.html), meaning column names are variables, and each rows represent a single subject. (As in this example, it should be converted to a 1 row data frame.)
-
-It takes time and effort to manually transforms this into a table which can be even harder when the number of subject grows.
-
-Functions in this module will **automate** this process.
-
-### Read HRV report file
-
-`read_HRV_reports()` read and transform LabChart's HRV report file (`.txt`) to a tidy tibble.
-
-The first argument (`file`) is a **path** to either *single* HRV report file or *folder* containing multiple HRV report file, the latter case should be more useful to you.
+This package comes with example data of LabChart's HRV report file(s) in `.txt`.
 
 ```{r path_hrv}
 # Path to a folder containing example HRV report text files
 path_hrv <- labChartHRV_example("HRV")
-path_hrv
-```
-
-There are `r length(dir(path_hrv))` HRV report `.txt` files in this folder.
-
-```{r}
 dir(path_hrv)
 ```
 
-Now, just supply the path to the folder.
+Read HRV report file(s) from `.txt` to a data frame by calling `read_HRV_reports()` with path to either single HRV report or folder containing multiple reports.
 
-```{r}
-# Read In
+```{r hrv_tbl}
+# Read multiple HRV report files from a folder
 hrv_tbl <- read_HRV_reports(path_hrv)
 hrv_tbl
 ```
 
-`hrv_tbl` has `r ncol(hrv_tbl)` columns and `r nrow(hrv_tbl)` rows. Column names correspond to each fields of the HRV report, and each rows correspond to each HRV report files.
+`hrv_tbl` is a **tibble** (data frame)
+
+-   **Columns** are *variables* including the results from time-and frequency-domain HRV analysis.
+
+-   **Rows** corresponding to *report files* (i.e., each subjects).
+
 
 ```{r}
-# Column Names
+# Variable names
 names(hrv_tbl)
 ```
 
+Variable's description are store in this data frame:
+
+```{r}
+HRV_vars_desc
+```
+
+# Learn more
+
 ------------------------------------------------------------------------
+
+If you want to collaborate to add more function to this package, please contact me at [kittipos.sir\@mahidol.edu](mailto:kittipos.sir@mahidol.edu)
 
 Last updated: `r Sys.Date()`
