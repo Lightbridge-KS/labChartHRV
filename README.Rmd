@@ -13,28 +13,31 @@ knitr::opts_chunk$set(
 )
 ```
 
-# sipsANS
+# labChartHRV
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/Lightbridge-KS/sipsANS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lightbridge-KS/sipsANS/actions/workflows/R-CMD-check.yaml)
+
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![R-CMD-check](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
+
+> **R package :package: for LabChart's Heart Rate Variability Data**
 
 # Overview
 
-**`{sipsANS}`** is an open-source software package written in [R programming language](https://www.r-project.org).
+**`{labChartHRV}`** is an open-source software package written in [R programming language](https://www.r-project.org).
 
-It is an R package which contains **custom made R functions** developed for **cardiovascular and autonomic laboratory from the Department of Physiology, Faculty of Medicine Siriraj Hospital**.
+It is an R package which contains functions for data import and manipulation of [LabChart's HRV module](https://www.adinstruments.com/products/hrv).
 
-Currently, these custom R functions are for:
+**Functionality**: currently there is 1
 
 -   Import and transform LabChart's HRV report file (`.txt`) into a tibble (data frame).
 
-(Collaborator is welcome, please contact me at [kittipos.sir\@mahidol.edu](mailto:kittipos.sir@mahidol.edu))
+(If you want to collaborate and add more functions, please contact me at [kittipos.sir\@mahidol.edu](mailto:kittipos.sir@mahidol.edu))
 
 # Installation
 
-You can install the development version of sipsANS from [GitHub](https://github.com/) with:
+You can install the development version of labChartHRV from [GitHub](https://github.com/) with:
 
 -   (If you haven't already), install `{remotes}` package by:
 
@@ -42,23 +45,23 @@ You can install the development version of sipsANS from [GitHub](https://github.
 install.packages("remotes")
 ```
 
--   Install `{sipsANS}` package by:
+-   Install `{labChartHRV}` package by:
 
 ``` r
-remotes::install_github("Lightbridge-KS/sipsANS")
+remotes::install_github("Lightbridge-KS/labChartHRV")
 ```
 
 # Usage
 
 ```{r}
-library(sipsANS)
+library(labChartHRV)
 ```
 
-`{sipsANS}` contains simulated example data that can be accessed by `sipsANS_example()`.
+`{labChartHRV}` contains simulated example data that can be accessed by `labChartHRV_example()`.
 
 ```{r}
 # Show example data that available in this package
-sipsANS_example()
+labChartHRV_example()
 ```
 
 Currently, there is 1 type of example data which is LabChart's HRV report file.
@@ -77,13 +80,11 @@ As you can see, the text file is slightly formatted and store data in key-value 
 
 > How to transform it so that a data analysis can be performed?
 
-
 To process this data for further analysis, one approach is to convert it to a table-like data structure which, in `R`, is a **data frame** (or [tibble](https://r4ds.had.co.nz/tibbles.html)). The design of this data frame should be [**tidy**](https://r4ds.had.co.nz/tidy-data.html), meaning column names are variables, and each rows represent a single subject. (As in this example, it should be converted to a 1 row data frame.)
 
 It takes time and effort to manually transforms this into a table which can be even harder when the number of subject grows.
 
 Functions in this module will **automate** this process.
-
 
 ### Read HRV report file
 
@@ -93,7 +94,7 @@ The first argument (`file`) is a **path** to either *single* HRV report file or 
 
 ```{r path_hrv}
 # Path to a folder containing example HRV report text files
-path_hrv <- sipsANS_example("HRV")
+path_hrv <- labChartHRV_example("HRV")
 path_hrv
 ```
 
@@ -111,7 +112,6 @@ hrv_tbl <- read_HRV_reports(path_hrv)
 hrv_tbl
 ```
 
-
 `hrv_tbl` has `r ncol(hrv_tbl)` columns and `r nrow(hrv_tbl)` rows. Column names correspond to each fields of the HRV report, and each rows correspond to each HRV report files.
 
 ```{r}
@@ -119,8 +119,6 @@ hrv_tbl
 names(hrv_tbl)
 ```
 
-
-
----
+------------------------------------------------------------------------
 
 Last updated: `r Sys.Date()`

@@ -335,32 +335,32 @@ usethis::use_r("example")
 usethis::use_test("example")
 ```
 
-```{r PKG_example}
-#' Get path to sipsANS example
+```{r labChartHRV_example}
+#' Get path to labChartHRV example
 #'
-#' sipsANS comes bundled with a number of sample files in its `inst/extdata`
+#' labChartHRV comes bundled with a number of sample files in its `inst/extdata`
 #' directory. This function make them easy to access
 #'
 #' @param path Path to example file or folder. If `NULL`, the example files or folders will be listed.
 #' @export
 #' @examples
-#' library(sipsANS)
-#' sipsANS_example()
-#' sipsANS_example("HRV")
-sipsANS_example <- function(path = NULL) {
+#' library(labChartHRV)
+#' labChartHRV_example()
+#' labChartHRV_example("HRV")
+labChartHRV_example <- function(path = NULL) {
   
   if (is.null(path)) {
-    dir(system.file("extdata", package = "sipsANS"))
+    dir(system.file("extdata", package = "labChartHRV"))
     
   } else {
-    system.file("extdata", path, package = "sipsANS", mustWork = TRUE)
+    system.file("extdata", path, package = "labChartHRV", mustWork = TRUE)
   }
   
 }
 
-sipsANS_example()
-sipsANS_example("HRV")
-sipsANS_example("HRV/file1.txt")
+labChartHRV_example()
+labChartHRV_example("HRV")
+labChartHRV_example("HRV/file1.txt")
 ```
 
 

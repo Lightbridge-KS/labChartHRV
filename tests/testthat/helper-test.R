@@ -3,8 +3,8 @@
 
 
 
-path_hrv <- sipsANS_example("HRV")
-path_hrv1 <- sipsANS_example("HRV/file1.txt")
+path_hrv <- labChartHRV_example("HRV")
+path_hrv1 <- labChartHRV_example("HRV/file1.txt")
 
 
 # Raw HRV Character -------------------------------------------------------

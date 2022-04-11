@@ -1,4 +1,4 @@
-Package: sipsANS
+Package: labChartHRV
 Title: ANS Lab in SI Physiology
 Version: 0.0.0.9000
 Authors@R: 
@@ -25,5 +25,5 @@ Collate:
     'example.R'
     'globals.R'
     'utils-pipe.R'
-URL: https://github.com/Lightbridge-KS/sipsANS
-BugReports: https://github.com/Lightbridge-KS/sipsANS/issues
+URL: https://github.com/Lightbridge-KS/labChartHRV
+BugReports: https://github.com/Lightbridge-KS/labChartHRV/issues

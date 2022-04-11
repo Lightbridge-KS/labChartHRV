@@ -1,4 +1,4 @@
 library(testthat)
-library(sipsANS)
+library(labChartHRV)
 
-test_check("sipsANS")
+test_check("labChartHRV")

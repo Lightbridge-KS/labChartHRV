@@ -1,35 +1,38 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# sipsANS
+# labChartHRV
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/Lightbridge-KS/sipsANS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lightbridge-KS/sipsANS/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
+
+> **R package :package: for LabChart’s Heart Rate Variability Data**
 
 # Overview
 
-**`{sipsANS}`** is an open-source software package written in [R
+**`{labChartHRV}`** is an open-source software package written in [R
 programming language](https://www.r-project.org).
 
-It is an R package which contains **custom made R functions** developed
-for **cardiovascular and autonomic laboratory from the Department of
-Physiology, Faculty of Medicine Siriraj Hospital**.
+It is an R package which contains functions for data import and
+manipulation of [LabChart’s HRV
+module](https://www.adinstruments.com/products/hrv).
 
-Currently, these custom R functions are for:
+**Functionality**: currently there is 1
 
 -   Import and transform LabChart’s HRV report file (`.txt`) into a
     tibble (data frame).
 
-(Collaborator is welcome, please contact me at
+(If you want to collaborate and add more functions, please contact me at
 <kittipos.sir@mahidol.edu>)
 
 # Installation
 
-You can install the development version of sipsANS from
+You can install the development version of labChartHRV from
 [GitHub](https://github.com/) with:
 
 -   (If you haven’t already), install `{remotes}` package by:
@@ -38,24 +41,24 @@ You can install the development version of sipsANS from
 install.packages("remotes")
 ```
 
--   Install `{sipsANS}` package by:
+-   Install `{labChartHRV}` package by:
 
 ``` r
-remotes::install_github("Lightbridge-KS/sipsANS")
+remotes::install_github("Lightbridge-KS/labChartHRV")
 ```
 
 # Usage
 
 ``` r
-library(sipsANS)
+library(labChartHRV)
 ```
 
-`{sipsANS}` contains simulated example data that can be accessed by
-`sipsANS_example()`.
+`{labChartHRV}` contains simulated example data that can be accessed by
+`labChartHRV_example()`.
 
 ``` r
 # Show example data that available in this package
-sipsANS_example()
+labChartHRV_example()
 #> [1] "HRV"
 ```
 
@@ -103,9 +106,9 @@ should be more useful to you.
 
 ``` r
 # Path to a folder containing example HRV report text files
-path_hrv <- sipsANS_example("HRV")
+path_hrv <- labChartHRV_example("HRV")
 path_hrv
-#> [1] "/Users/kittipos/Library/R/x86_64/4.1/library/sipsANS/extdata/HRV"
+#> [1] "/Users/kittipos/Library/R/x86_64/4.1/library/labChartHRV/extdata/HRV"
 ```
 
 There are 4 HRV report `.txt` files in this folder.

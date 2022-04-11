@@ -36,7 +36,7 @@ and values in each rows mapped to "value" from the input file(s).
 }
 \examples{
 # Path to `HRV/` folder containing example HRV report files (`.txt`)
-path <- sipsANS_example("HRV")
+path <- labChartHRV_example("HRV")
 # Read into tibble
 read_HRV_reports(path)
 }
