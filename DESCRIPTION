@@ -17,6 +17,7 @@ Imports:
 Depends: 
     R (>= 3.10)
 Suggests: 
+    covr,
     glue,
     knitr,
     rmarkdown,

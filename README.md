@@ -8,7 +8,8 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml/badge.svg?branch=main)](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml)
-
+[![Codecov test
+coverage](https://codecov.io/gh/Lightbridge-KS/labChartHRV/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Lightbridge-KS/labChartHRV?branch=main)
 <!-- badges: end -->
 
 > **R package :package: for LabChart’s Heart Rate Variability Data**
