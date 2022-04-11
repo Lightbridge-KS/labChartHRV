@@ -1,0 +1,118 @@
+---
+title: "labChartHRV"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{labChartHRV}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(labChartHRV)
+```
+
+> Import **LabChart's HRV report file** (`.txt`) into a **tidy tibble** with 1 subject per rows.
+
+## Export HRV report file
+
+After you've analysed the HRV data in LabChart, follow these steps to export HRV report:
+
+Go to menu `HRV` -\> `Export Report...` -\> save file as `.txt`
+
+Open that file, it should look like this:
+
+![](img/hrv-rep-ex1.png){width="700"}
+
+As you can see, the text file is slightly formatted and store data in key-value pairs (mostly).
+
+How to transform it so that a data analysis can be performed?
+
+To process this data for further analysis, one approach is to convert it to a table-like data structure which, in `R`, is a **data frame** (or [tibble](https://r4ds.had.co.nz/tibbles.html)). The design of this data frame should be [**tidy**](https://r4ds.had.co.nz/tidy-data.html), meaning column names are variables, and each rows represent a single subject. (As in this example, it should be converted to a 1 row data frame.)
+
+It takes time and effort to manually transforms this into a table which can be even harder when the number of subject grows.
+
+That's why I've build this package!
+
+## Read HRV report file
+
+**`read_HRV_reports()`** read and transform LabChart's HRV report file (`.txt`) to a tidy tibble.
+
+The first argument (`file`) is a **path** to either *single* HRV report file or *folder* containing multiple HRV report file, the latter case should be more useful to you.
+
+```{r path_hrv}
+# Path to a folder containing example HRV report text files
+path_hrv <- labChartHRV_example("HRV")
+path_hrv
+```
+
+There are `r length(dir(path_hrv))` HRV report `.txt` files in this folder.
+
+```{r }
+dir(path_hrv)
+```
+
+Now, just supply the path to the folder to import it.
+
+```{r hrv_tbl}
+# Read In
+hrv_tbl <- read_HRV_reports(path_hrv)
+hrv_tbl
+```
+
+(**Note:** Internally `read_HRV_reports()` use `readtext::readtext()` to read textual data. I've set the text encoding to `UTF-16LE`. If you found that the output looks abnormal try changing text encoding via argument `encoding`.)
+
+`hrv_tbl` has `r ncol(hrv_tbl)` columns and `r nrow(hrv_tbl)` rows. Column names correspond to each fields of the HRV report, and each rows correspond to each HRV report files.
+
+```{r}
+# Column Names
+names(hrv_tbl)
+```
+
+The description of each columns is stored in `HRV_vars_desc` data frame.
+
+```{r HRV_vars_desc}
+HRV_vars_desc
+```
+
+## Parse HRV report
+
+**`parse_HRV_reports()`** is a lower-level function that *parse* HRV report from **character vector** to a data frame.
+
+### Read Manually
+
+First, you need to read HRV report in to character vector using any text reading engine of your choice.
+
+```{r hrv_chr}
+# Path to an HRV report text file
+path_hrv1 <- labChartHRV_example("HRV/file1.txt")
+
+# Read into character vector, I use `{readtext}`
+hrv_chr <- readtext::readtext(path_hrv1, 
+                              encoding = "UTF-16LE")$text
+# For nice printing
+glue::as_glue(hrv_chr) 
+```
+
+### Parse to Data Frame
+
+Now parse the character vector to a data frame.
+
+```{r}
+parse_HRV_reports(hrv_chr)
+```
+
+Since I've import only 1 HRV report into a character vector of **length 1**, the resulting data frame has only **1 row**. 
+
+However, you can supply HRV report character vector which has > 1 length, and the resulting data frame would have multiple rows corresponding to each HRV reports.
+
+
+------------------------------------------------------------------------
+
+Last updated: `r Sys.Date()`
