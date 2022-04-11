@@ -14,17 +14,21 @@ library(here)
 
 ### Plan
 
-`read_HRV_reports`: a wrapper
+**Function**
+
+`read_HRV_reports`: (USER) a wrapper
 
 -   Input: `path-to-hrv-folder`
 -   Return: a data frame of HRV reports combined
 
-`parse_HRV_reports`
+`parse_HRV_reports` (USER)
 
 -   Input: character vector of HRV reports
 -   Return: a data frame of HRV reports combined
 
-`extract_HRV_field`
+`new_extract_HRV_field` (Internal): a constructor of `extract_HRV_field`
+
+`extract_HRV_field` (Internal ?)
 
 -   Input: character vector of HRV reports
 -   Return: character vector of particular fields
@@ -32,6 +36,13 @@ library(here)
 Example
 
 `extract_HRV_field$Name()`
+
+**Lookup**
+
+`regex_hrv()` (internal): Function that return look up list for HRV regex.
+
+`HRV_vars`: variable and description of HRV
+
 
 ```{r}
 usethis::use_r("HRV_reports")
