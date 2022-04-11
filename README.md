@@ -141,9 +141,14 @@ HRV_vars_desc
 
 # Learn more
 
-------------------------------------------------------------------------
+-   [Get started using
+    labChartHRV](https://lightbridge-ks.github.io/labChartHRV/articles/labChartHRV.html)
 
-If you want to collaborate to add more function to this package, please
-contact me at <kittipos.sir@mahidol.edu>
+# Collaboration
+
+If you want to collaborate to add more function to this package, feel
+free to contact me at <kittipos.sir@mahidol.edu>.
+
+------------------------------------------------------------------------
 
 Last updated: 2022-04-11
