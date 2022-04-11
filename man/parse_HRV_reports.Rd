@@ -25,7 +25,11 @@ with "key" mapping to column names and "value" mapping to corresponding cells.
 If \code{x} is given as character vector of length > 1, there will be multiple rows of tibble with each rows corresponding to each input character vectors.
 }
 \examples{
-NULL
+# Read HRV report to a character vector. Using any reading engine as you like.
+hrv_chr <- readtext::readtext(labChartHRV_example("HRV/file1.txt"),
+                              encoding = "UTF-16LE")$text
+# Parse into a tibble
+parse_HRV_reports(hrv_chr)
 }
 \seealso{
 \code{\link[=read_HRV_reports]{read_HRV_reports()}}: read LabChart's HRV report from file(s) path.

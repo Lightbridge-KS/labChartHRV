@@ -107,7 +107,7 @@ This will connect your package to codecov.
 Click on codecov badges, it will link to site, then copy token to clip board.
 
 ```{r}
-# covr::codecov(token = "f8281d4c-20db-4e02-9f4c-08429bf03a2b")
+# covr::codecov(token = "")
 ```
 
 

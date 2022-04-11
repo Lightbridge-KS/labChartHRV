@@ -76,7 +76,12 @@ read_HRV_reports <- function(file,
 #' @export
 #' @include HRV_field.R
 #'
-#' @examples NULL
+#' @examples
+#' # Read HRV report to a character vector. Using any reading engine as you like.
+#' hrv_chr <- readtext::readtext(labChartHRV_example("HRV/file1.txt"),
+#'                               encoding = "UTF-16LE")$text
+#' # Parse into a tibble
+#' parse_HRV_reports(hrv_chr)
 parse_HRV_reports <- function(x, format_cols = TRUE) {
 
   # Regex: Extract after equal sign
