@@ -16,8 +16,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 programming language](https://www.r-project.org).
 
 It is an R package which contains **custom made R functions** developed
-for **cardiovascular and autonomic laboratory** from the Department of
-Physiology, Faculty of Medicine Siriraj Hospital.
+for **cardiovascular and autonomic laboratory from the Department of
+Physiology, Faculty of Medicine Siriraj Hospital**.
 
 Currently, these custom R functions are for:
 

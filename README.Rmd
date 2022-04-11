@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 **`{sipsANS}`** is an open-source software package written in [R programming language](https://www.r-project.org).
 
-It is an R package which contains **custom made R functions** developed for **cardiovascular and autonomic laboratory** from the Department of Physiology, Faculty of Medicine Siriraj Hospital.
+It is an R package which contains **custom made R functions** developed for **cardiovascular and autonomic laboratory from the Department of Physiology, Faculty of Medicine Siriraj Hospital**.
 
 Currently, these custom R functions are for:
 
