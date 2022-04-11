@@ -1,9 +1,5 @@
 library(purrr)
 
-path_hrv1 <- sipsANS_example("HRV/file1.txt")
-
-hrv1_chr_raw <- readtext::readtext(path_hrv1, encoding = "UTF-16LE")$text
-
 
 # Test Propaties ----------------------------------------------------------
 
