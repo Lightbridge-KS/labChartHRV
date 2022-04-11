@@ -5,3 +5,4 @@
 ^my_data$
 ^data-raw$
 ^README\.Rmd$
+^\.github$
