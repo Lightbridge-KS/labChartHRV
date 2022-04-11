@@ -89,6 +89,7 @@ HRV_vars_desc
 
 First, you need to read HRV report in to character vector using any text reading engine of your choice.
 
+
 ```{r hrv_chr}
 # Path to an HRV report text file
 path_hrv1 <- labChartHRV_example("HRV/file1.txt")

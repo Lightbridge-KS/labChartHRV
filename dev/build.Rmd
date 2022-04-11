@@ -6,6 +6,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) # Set WD to Root
+knitr::opts_chunk$set(eval = FALSE)
 here::i_am("dev/build.Rmd")
 library(here)
 
@@ -106,7 +107,7 @@ This will connect your package to codecov.
 Click on codecov badges, it will link to site, then copy token to clip board.
 
 ```{r}
-covr::codecov(token = "your-token")
+# covr::codecov(token = "f8281d4c-20db-4e02-9f4c-08429bf03a2b")
 ```
 
 
