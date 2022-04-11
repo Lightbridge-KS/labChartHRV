@@ -41,7 +41,9 @@ Example
 
 `regex_hrv()` (internal): Function that return look up list for HRV regex.
 
-`HRV_vars`: variable and description of HRV
+`HRV_vars_desc`: variable and description of HRV report.
+
+`HRV_vars_domain`: list containing variable names of time and frequency domain.
 
 
 ```{r}

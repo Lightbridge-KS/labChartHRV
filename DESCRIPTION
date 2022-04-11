@@ -22,8 +22,10 @@ Config/testthat/edition: 3
 Collate: 
     'HRV_field.R'
     'HRV_reports.R'
+    'data.R'
     'example.R'
     'globals.R'
     'utils-pipe.R'
 URL: https://github.com/Lightbridge-KS/labChartHRV
 BugReports: https://github.com/Lightbridge-KS/labChartHRV/issues
+LazyData: true

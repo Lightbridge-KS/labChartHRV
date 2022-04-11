@@ -1,27 +1,5 @@
----
-title: "HRV Variables"
-author: "kittipos sirivongrungson"
-date: '2022-04-11'
-output: html_document
----
+## code to prepare `HRV_vars_desc` dataset goes here
 
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) # Set WD to Root
-here::i_am("dev/hrv-vars.Rmd")
-library(here)
-
-```
-
-## Variable Description
-
-`HRV_vars_desc`: variable and description of HRV report.
-
-```{r}
-HRV_vars_desc
-```
-
-
-```{r HRV_vars_desc}
 ## HRV report variables description
 HRV_vars_desc <- c(
   # Line 1
@@ -82,6 +60,5 @@ HRV_vars_desc <- c(
 ) %>%
 
   tibble::enframe("variable", "description")
-```
 
-
+usethis::use_data(HRV_vars_desc, overwrite = TRUE)
