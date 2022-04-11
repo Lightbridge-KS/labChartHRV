@@ -17,6 +17,9 @@ Imports:
 Depends: 
     R (>= 3.10)
 Suggests: 
+    glue,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Collate: 
@@ -29,3 +32,4 @@ Collate:
 URL: https://github.com/Lightbridge-KS/labChartHRV
 BugReports: https://github.com/Lightbridge-KS/labChartHRV/issues
 LazyData: true
+VignetteBuilder: knitr
