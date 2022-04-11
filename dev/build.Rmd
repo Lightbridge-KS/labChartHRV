@@ -180,7 +180,7 @@ fs::dir_create(here("man/figures"))
 ## Vignette
 
 ```{r vignette}
-# usethis::use_vignette("pkg", "Introduction to pkg")
+usethis::use_vignette("labChartHRV")
 ```
 
 ## Template
@@ -209,6 +209,12 @@ usethis::use_package("readtext")
 
 # Dev Package
 # usethis::use_dev_package("pkg", remote = "Lightbridge-KS/pkg")
+```
+
+Suggest
+
+```{r}
+usethis::use_package("glue", type = "Suggests")
 ```
 
 

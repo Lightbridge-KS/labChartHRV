@@ -5,3 +5,4 @@
 .DS_Store
 *.nb.html
 my_data/
+inst/doc
