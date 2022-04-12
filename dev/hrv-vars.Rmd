@@ -9,8 +9,29 @@ output: html_document
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) # Set WD to Root
 here::i_am("dev/hrv-vars.Rmd")
 library(here)
-
+library(dplyr)
 ```
+
+
+## Domain Variables
+
+```{r HRV_vars_domain}
+HRV_vars_domain <- list(time = c("SDNN", "SD_del_NN", "RMSSD", "Normals_count",
+                                 "NN50_count", "NN50_percent"),
+                        freq = c("Power_tot", "VLF_freq","VLF",
+                                 "LF_freq","LF", "LF_nu",
+                                 "HF_freq","HF", "HF_nu",
+                                 "LF_HF")
+)
+```
+
+```{r}
+vars <- HRV_vars_domain
+
+hrv_tbl %>% 
+  select(Name, vars$freq)
+```
+
 
 ## Variable Description
 
