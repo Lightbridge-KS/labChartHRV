@@ -14,8 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Tutorial
 
-> Import **LabChart's HRV report file** (`.txt`) into a **tidy tibble** with 1 subject per rows.
+-   How to import **LabChart's HRV report file** (`.txt`) into a **tidy tibble** with 1 subject per rows.
 
 ## Export HRV report file
 
@@ -90,7 +91,6 @@ HRV_vars_desc
 
 First, you need to read HRV report in to character vector using any text reading engine of your choice.
 
-
 ```{r hrv_chr}
 # Path to an HRV report text file
 path_hrv1 <- labChartHRV_example("HRV/file1.txt")
@@ -110,9 +110,38 @@ Now parse the character vector to a data frame.
 parse_HRV_reports(hrv_chr)
 ```
 
-Since I've import only 1 HRV report into a character vector of **length 1**, the resulting data frame has only **1 row**. 
+Since I've import only 1 HRV report into a character vector of **length 1**, the resulting data frame has only **1 row**.
 
-However, you can supply HRV report character vector which has > 1 length, and the resulting data frame would have multiple rows corresponding to each HRV reports.
+However, you can supply HRV report character vector which has \> 1 length, and the resulting data frame would have multiple rows corresponding to each HRV reports.
+
+
+## Selection Helper
+
+`{labChartHRV}` comes with a helper for select HRV time-and frequency-domain variables.
+
+`HRV_vars_domain` is a list with 2 elements:
+
+-   `time`: contains character vector of time-domain variables.
+
+-   `freq`: contains character vector of frequency-domain variables.
+
+For example
+
+```{r setup-2, message=FALSE, warning=FALSE}
+library(dplyr)
+```
+
+```{r}
+vars <- HRV_vars_domain
+str(vars)
+```
+
+Select HRV time-domain variables.
+
+```{r}
+hrv_tbl %>% 
+  select(Name, vars$time)
+```
 
 
 ------------------------------------------------------------------------
