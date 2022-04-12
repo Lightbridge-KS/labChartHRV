@@ -17,22 +17,21 @@ coverage](https://codecov.io/gh/Lightbridge-KS/labChartHRV/branch/main/graph/bad
 
 # Overview
 
-`{labChartHRV}` is an open-source software package written in [R
-programming language](https://www.r-project.org).
-
-It is an R package which contains functions for data import and
-manipulation of [LabChart’s HRV
+`{labChartHRV}` is an R package which contains functions for data import
+and manipulation of [LabChart’s HRV
 module](https://www.adinstruments.com/products/hrv).
 
-**Functionality**: Import and transform LabChart’s HRV report file
-(`.txt`) into a tibble (data frame).
+**Use case**
+
+-   Import and transform LabChart’s HRV report file (`.txt`) into a
+    tibble (data frame).
 
 # Installation
 
 You can install the development version of labChartHRV from
 [GitHub](https://github.com/) with:
 
--   (If you haven’t already), install `{remotes}` package by:
+-   Install `{remotes}` package by (skip If you already have):
 
 ``` r
 install.packages("remotes")
@@ -152,4 +151,4 @@ free to contact me at <kittipos.sir@mahidol.edu>.
 
 ------------------------------------------------------------------------
 
-Last updated: 2022-04-11
+Last updated: 2022-04-12
