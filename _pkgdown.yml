@@ -1,7 +1,9 @@
 url: https://lightbridge-ks.github.io/labChartHRV/
 template:
   bootstrap: 5
-  bootswatch: spacelab
+  bootswatch: flatly #simplex
+  bslib:
+    pkgdown-nav-height: 100px
 
 navbar:
   structure:
