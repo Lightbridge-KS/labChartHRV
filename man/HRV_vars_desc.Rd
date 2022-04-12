@@ -3,13 +3,12 @@
 \docType{data}
 \name{HRV_vars_desc}
 \alias{HRV_vars_desc}
-\title{Prices of 50,000 round cut diamonds.}
+\title{HRV Variable Description}
 \format{
 A data frame with 2 columns:
 \describe{
 \item{variable}{a variable names}
 \item{description}{a description of each variables}
-...
 }
 }
 \usage{

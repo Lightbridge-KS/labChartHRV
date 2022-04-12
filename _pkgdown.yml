@@ -20,6 +20,7 @@ reference:
 - subtitle: Lookup table
   contents:
   - '`HRV_vars_desc`'
+  - '`HRV_vars_domain`'
 
 - subtitle: Example data
   contents:
