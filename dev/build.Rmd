@@ -188,6 +188,13 @@ usethis::use_news_md()
 usethis::use_vignette("labChartHRV")
 ```
 
+## Logo
+
+```{r}
+# usethis::use_logo("man/figures/logo.png")
+```
+
+
 ## Template
 
 ```{r rmd_template}

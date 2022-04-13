@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# labChartHRV
+# labChartHRV <a href="https://lightbridge-ks.github.io/labChartHRV/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 
@@ -151,4 +151,4 @@ free to contact me at <kittipos.sir@mahidol.edu>.
 
 ------------------------------------------------------------------------
 
-Last updated: 2022-04-12
+Last updated: 2022-04-13
