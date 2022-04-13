@@ -17,7 +17,7 @@ library(here)
 
 ```{r}
 # increments the version field in DESCRIPTION
-# usethis::use_version("patch")
+usethis::use_version("minor")
 ```
 
 
