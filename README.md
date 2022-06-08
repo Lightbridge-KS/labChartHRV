@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lightbridge-KS/labChartHRV/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/Lightbridge-KS/labChartHRV/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Lightbridge-KS/labChartHRV?branch=main)
-
+[![DOI](https://zenodo.org/badge/480112543.svg)](https://zenodo.org/badge/latestdoi/480112543)
 <!-- badges: end -->
 
 > **R package :package: for LabChart’s Heart Rate Variability Data**
@@ -123,20 +123,20 @@ Variable’s description are store in this data frame:
 
 ``` r
 HRV_vars_desc
-#> # A tibble: 40 × 2
-#>    variable      description            
-#>    <chr>         <chr>                  
-#>  1 File_LabChart LabChart file name     
-#>  2 Channel       Channel                
-#>  3 Date          Date                   
-#>  4 Start_time    Start time             
-#>  5 End_time      End time               
-#>  6 Name          Name                   
-#>  7 Gender        Gender                 
-#>  8 Age           Age                    
-#>  9 Beats_tot     Total number of beats  
-#> 10 Rec_length    Length of recording (s)
-#> # … with 30 more rows
+#> # A tibble: 41 × 2
+#>    variable      description                       
+#>    <chr>         <chr>                             
+#>  1 doc_id        File name of the input HRV reports
+#>  2 File_LabChart LabChart file name                
+#>  3 Channel       Channel                           
+#>  4 Date          Date                              
+#>  5 Start_time    Start time                        
+#>  6 End_time      End time                          
+#>  7 Name          Name                              
+#>  8 Gender        Gender                            
+#>  9 Age           Age                               
+#> 10 Beats_tot     Total number of beats             
+#> # … with 31 more rows
 ```
 
 # Learn more
@@ -151,4 +151,4 @@ free to contact me at <kittipos.sir@mahidol.edu>.
 
 ------------------------------------------------------------------------
 
-Last updated: 2022-04-13
+Last updated: 2022-06-08
