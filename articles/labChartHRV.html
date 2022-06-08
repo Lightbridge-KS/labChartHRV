@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">labChartHRV</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -158,20 +158,20 @@
 <p>The description of each columns is stored in <code>HRV_vars_desc</code> data frame.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">HRV_vars_desc</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 40 × 2</span></span>
-<span class="co">#&gt;    variable      description            </span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> File_LabChart LabChart file name     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Channel       Channel                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Date          Date                   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Start_time    Start time             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> End_time      End time               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Name          Name                   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Gender        Gender                 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Age           Age                    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Beats_tot     Total number of beats  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Rec_length    Length of recording (s)</span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 30 more rows</span></span></code></pre></div>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 41 × 2</span></span>
+<span class="co">#&gt;    variable      description                       </span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> doc_id        File name of the input HRV reports</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> File_LabChart LabChart file name                </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Channel       Channel                           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Date          Date                              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Start_time    Start time                        </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> End_time      End time                          </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Name          Name                              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Gender        Gender                            </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Age           Age                               </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Beats_tot     Total number of beats             </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 31 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="parse-hrv-report">Parse HRV report<a class="anchor" aria-label="anchor" href="#parse-hrv-report"></a>
@@ -255,7 +255,7 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Mary   17.1      5.58  5.58           420          0        0    </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Tom    22.2      6.20  6.19           434          1        0.230</span></code></pre></div>
 <hr>
-<p>Last updated: 2022-04-13</p>
+<p>Last updated: 2022-06-08</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -270,7 +270,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>
