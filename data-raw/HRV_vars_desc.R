@@ -2,6 +2,7 @@
 
 ## HRV report variables description
 HRV_vars_desc <- c(
+  doc_id = "File name of the input HRV reports",
   # Line 1
   File_LabChart = "LabChart file name",
   Channel = "Channel",

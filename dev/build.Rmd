@@ -21,6 +21,13 @@ usethis::use_version("minor")
 ```
 
 
+# Release
+
+```{r}
+usethis::use_github_release()
+```
+
+
 # 1. PKG File Structures
 
 
@@ -294,7 +301,7 @@ To store code that used for data preparation in `data-raw/`
 ```{r export_data}
 # usethis::use_data(export_df1,export_df2) 
 
-usethis::use_data(HRV_vars_desc) 
+usethis::use_data(HRV_vars_desc, overwrite = T) 
 usethis::use_data_raw("HRV_vars_desc") # Code to Prepare data
 # usethis::use_data_raw("export_df2") # Code to Prepare data
 usethis::use_data(HRV_vars_domain)
