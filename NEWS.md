@@ -1,3 +1,7 @@
+# labChartHRV 0.1.1
+
+-   Add `doc_id` description to `HRV_vars_desc`.
+
 # labChartHRV 0.1.0
 
 R package 📦 for LabChart's Heart Rate Variability Data
